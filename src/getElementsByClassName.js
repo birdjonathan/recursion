@@ -3,7 +3,43 @@
 //   return document.getElementsByClassName(className);
 // };
 
-// But instead we're going to implement it from scratch:
-var getElementsByClassName = function(className){
-  // your code here
+var getElementsByClassName = function (className) {
+   var hits = [];
+   searchForClass(document.body);
+
+function hasClass(element, clss) {
+    return (' ' + element.className + ' ').indexOf(' ' + clss + ' ') > -1;
+}
+
+  function searchForClass(searchClass){
+ 
+  if (hasClass(searchClass, className)){
+  	console.log("Found class" + searchClass);
+  	hits.push(searchClass);
+  }
+  else 
+  	console.log("Sorry, your class was not found.");
+
+  	for(var i=0; i<searchClass.children.length; i++){
+ 		searchForClass(searchClass.children[i]);
+  	}
+
+  }
+
+  return hits;
 };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
